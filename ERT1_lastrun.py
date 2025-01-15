@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on Wed Jan 15 14:08:46 2025
+    on Wed Jan 15 14:29:11 2025
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -360,6 +360,13 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         depth=0.0);
     
     # --- Initialize components for Routine "ecg_baseline" ---
+    text_13 = visual.TextStim(win=win, name='text_13',
+        text='+',
+        font='Open Sans',
+        pos=(0, 0), height=0.12, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
     
     # --- Initialize components for Routine "Welcome" ---
     text = visual.TextStim(win=win, name='text',
@@ -1004,7 +1011,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     # update component parameters for each repeat
     thisExp.addData('ecg_baseline.started', globalClock.getTime())
     # keep track of which components have finished
-    ecg_baselineComponents = []
+    ecg_baselineComponents = [text_13]
     for thisComponent in ecg_baselineComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -1019,13 +1026,42 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Run Routine "ecg_baseline" ---
     routineForceEnded = not continueRoutine
-    while continueRoutine:
+    while continueRoutine and routineTimer.getTime() < 300.0:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
+        
+        # *text_13* updates
+        
+        # if text_13 is starting this frame...
+        if text_13.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            text_13.frameNStart = frameN  # exact frame index
+            text_13.tStart = t  # local t and not account for scr refresh
+            text_13.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(text_13, 'tStartRefresh')  # time at next scr refresh
+            # update status
+            text_13.status = STARTED
+            text_13.setAutoDraw(True)
+        
+        # if text_13 is active this frame...
+        if text_13.status == STARTED:
+            # update params
+            pass
+        
+        # if text_13 is stopping this frame...
+        if text_13.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > text_13.tStartRefresh + 300-frameTolerance:
+                # keep track of stop time/frame for later
+                text_13.tStop = t  # not accounting for scr refresh
+                text_13.frameNStop = frameN  # exact frame index
+                # update status
+                text_13.status = FINISHED
+                text_13.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1053,8 +1089,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     thisExp.addData('ecg_baseline.stopped', globalClock.getTime())
-    # the Routine "ecg_baseline" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
+    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
+    if routineForceEnded:
+        routineTimer.reset()
+    else:
+        routineTimer.addTime(-300.000000)
     
     # --- Prepare to start Routine "Welcome" ---
     continueRoutine = True
